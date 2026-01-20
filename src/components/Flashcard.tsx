@@ -13,7 +13,7 @@ const Flashcard: React.FC<FlashcardProps> = ({ item, isFlipped: propIsFlipped, o
 
   useEffect(() => {
     setIsFlipped(propIsFlipped ?? false);
-  }, [propIsFlipped])
+  }, [propIsFlipped, setIsFlipped])
 
 
   const handleFlip = () => {

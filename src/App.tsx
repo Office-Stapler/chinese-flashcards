@@ -1,32 +1,37 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import './App.css';
 import Flashcard from './components/Flashcard';
 import { vocabList } from './data/vocab';
+import { useLocalStorage } from './hooks/useLocalStorage';
 
 function App() {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [knownWords, setKnownWords] = useState<Set<number>>(() => {
-    const saved = localStorage.getItem('known-words');
-    return saved ? new Set(JSON.parse(saved)) : new Set();
-  });
+  const { setValue: setLocalCurrIndex, value: localCurrIndex } = useLocalStorage<number>('current-index', 0);
+  const [currentIndex, setCurrentIndex] = useState(localCurrIndex);
+  const { setValue: setLocalKnownWords, value: localKnownWords } = useLocalStorage<number[]>('known-words', []);
+  const [knownWords, setKnownWords] = useState<Set<number>>(new Set(localKnownWords));
   const [isFlipped, setIsFlipped] = useState(false);
-  const handleFlip = () => setIsFlipped(!isFlipped)
-
+  const handleFlip = () => setIsFlipped(!isFlipped);
 
   useEffect(() => {
-    localStorage.setItem('known-words', JSON.stringify(Array.from(knownWords)));
+    setLocalKnownWords(Array.from(knownWords));
   }, [knownWords]);
 
   const nextCard = () => {
     setIsFlipped(false);
-    setCurrentIndex((prevIndex) => (prevIndex + 1) % vocabList.length);
+    setCurrentIndex((prevIndex) => {
+      const newIndex = (prevIndex + 1) % vocabList.length;
+      setLocalCurrIndex(newIndex);
+      return newIndex;
+    });
   };
 
   const prevCard = () => {
     setIsFlipped(false);
-    setCurrentIndex((prevIndex) =>
-      prevIndex === 0 ? vocabList.length - 1 : prevIndex - 1
-    );
+    setCurrentIndex((prevIndex) => {
+      const newIndex = prevIndex === 0 ? vocabList.length - 1 : prevIndex - 1;
+      setLocalCurrIndex(newIndex);
+      return newIndex;
+    });
   };
 
   const toggleKnown = () => {
