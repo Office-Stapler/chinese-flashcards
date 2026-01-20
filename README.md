@@ -1,73 +1,61 @@
-# React + TypeScript + Vite
+# Chinese Flashcards
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A frontend-only flashcard application designed to help master Mandarin Chinese vocabulary.
 
-Currently, two official plugins are available:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
 
-## React Compiler
+- **Interactive Flashcards**: Tap or click to flip the card and reveal Pinyin, English meanings, and example sentences.
+- **Scoring System**: Mark words as "Mastered" to track your progress.
+- **Persistence**: Your progress is automatically saved to your browser's local storage.
+- **Responsive Design**: Optimized for both desktop and mobile devices.
+- **High-Quality Content**: Includes a hand-curated list of 100+ Chinese words with rich examples.
+- **Auto-Deployment**: Integrated GitHub Actions for automatic deployment to GitHub Pages.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Future Plans
 
-## Expanding the ESLint configuration
+- Add more words
+- Add ability to split vocab into different categories, such as HSK 1, HSK 2, etc.
+- Add ability to randomise list
+- Add a testing mode where the user tests a small portion of the vocab list at a time
+  - Make sure the testing accounts for how often the user has seen the word
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Development
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+### Prerequisites
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+- Node.js (LTS version recommended)
+- Yarn or NPM
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+### Installation
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/Office-Stapler/chinese-flashcards.git
+   cd chinese-flashcards
+   ```
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+2. Install dependencies:
+   ```bash
+   yarn install
+   ```
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+3. Start the development server:
+   ```bash
+   yarn dev
+   ```
+
+## Tech Stack
+
+- **React**: UI library
+- **Vite**: Modern frontend build tool
+- **TypeScript**: Static typing for reliability
+- **CSS3**: Custom animations and glassmorphism effects
+- **GitHub Actions**: Continuous Deployment
+
+## Project Structure
+
+- `src/components/`: Reusable UI components (Flashcard, etc.).
+- `src/data/`: Vocabulary data (`vocab.ts`).
+- `src/App.tsx`: Main application logic and state management.
+- `.github/workflows/`: Deployment configuration.
