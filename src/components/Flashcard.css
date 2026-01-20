@@ -1,0 +1,118 @@
+.flashcard-container {
+  width: 100%;
+  max-width: 400px;
+  height: 500px;
+  perspective: 1000px;
+  cursor: pointer;
+  margin: 0 auto;
+}
+
+.flashcard-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transform-style: preserve-3d;
+}
+
+.flashcard-container.flipped .flashcard-inner {
+  transform: rotateY(180deg);
+}
+
+.flashcard-front,
+.flashcard-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  border-radius: 24px;
+  box-shadow: 0 10px 30px var(--color-card-shadow);
+  background-color: var(--color-card-bg);
+  border: 1px solid var(--color-card-border);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+}
+
+.flashcard-back {
+  transform: rotateY(180deg);
+}
+
+.card-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* Front Side Styling */
+.chinese-text {
+  font-family: var(--font-chinese);
+  font-size: 5rem;
+  font-weight: 700;
+  color: var(--color-text-main);
+  margin-bottom: 1rem;
+}
+
+.hint-text {
+  font-size: 0.9rem;
+  color: var(--color-text-sub);
+  opacity: 0.6;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Back Side Styling */
+.chinese-text-small {
+  font-family: var(--font-chinese);
+  font-size: 2rem;
+  font-weight: 500;
+  color: var(--color-accent);
+  margin: 0;
+}
+
+.pinyin-text {
+  font-size: 1.2rem;
+  color: var(--color-text-sub);
+  margin-top: -0.5rem;
+}
+
+.english-meaning {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--color-text-main);
+  margin: 0.5rem 0 1.5rem 0;
+}
+
+.example-section {
+  text-align: left;
+  width: 100%;
+  padding: 1rem;
+  background-color: #f1f5f9;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.example-cn {
+  font-family: var(--font-chinese);
+  font-size: 1.1rem;
+  color: var(--color-text-main);
+  font-weight: 500;
+}
+
+.example-pinyin {
+  font-size: 0.9rem;
+  color: var(--color-text-sub);
+  font-style: italic;
+}
+
+.example-en {
+  font-size: 0.9rem;
+  color: var(--color-text-main);
+}
