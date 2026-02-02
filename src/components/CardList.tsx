@@ -22,14 +22,6 @@ const CardList = ({ data, id }: CardListProps) => {
     setLocalKnownWords(Array.from(knownWords));
   }, [knownWords, setLocalKnownWords]);
 
-  useEffect(() => {
-    // If the data length changes or is smaller than current index (shouldn't happen often but good safeguard)
-    if (currentIndex >= data.length && data.length > 0) {
-      setCurrentIndex(0);
-      setLocalCurrIndex(0);
-    }
-  }, [data, currentIndex, setLocalCurrIndex]);
-
   const nextCard = () => {
     setIsFlipped(false);
     setCurrentIndex((prevIndex) => {

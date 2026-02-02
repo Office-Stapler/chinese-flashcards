@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Card } from 'antd';
 import type { VocabItem } from '../data/vocab';
 import styles from './Flashcard.module.css';
@@ -12,11 +12,6 @@ interface FlashcardProps {
 
 const Flashcard: React.FC<FlashcardProps> = ({ item, isFlipped: propIsFlipped, onClick }) => {
   const [isFlipped, setIsFlipped] = useState(propIsFlipped ?? false);
-
-  useEffect(() => {
-    setIsFlipped(propIsFlipped ?? false);
-  }, [propIsFlipped, setIsFlipped])
-
 
   const handleFlip = () => {
     if (onClick) {
