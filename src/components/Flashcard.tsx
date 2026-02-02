@@ -28,13 +28,16 @@ const Flashcard: React.FC<FlashcardProps> = ({ item, isFlipped: propIsFlipped, o
   return (
     <div className={classnames(styles.flashcardContainer, { [styles.flipped]: isFlipped })} onClick={handleFlip}>
       <div className={styles.flashcardInner}>
-        <Card className={styles.flashcardFront} variant="outlined" hoverable={false}>
+        <Card className={styles.flashcard} variant="outlined" hoverable={false}>
           <div className={styles.cardContent}>
             <h2 className={styles.chineseText}>{item.chinese}</h2>
             <p className={styles.hintText}>Tap to reveal</p>
           </div>
         </Card>
-        <Card className={styles.flashcardBack} variant="outlined" hoverable={false}>
+        <Card className={classnames({
+          [styles.flashcard]: true,
+          [styles.flippedBack]: true,
+        })} variant="outlined" hoverable={false}>
           <div className={styles.cardContent}>
             <h2 className={styles.chineseTextSmall}>{item.chinese}</h2>
             <p className={styles.pinyinText}>{item.pinyin}</p>
