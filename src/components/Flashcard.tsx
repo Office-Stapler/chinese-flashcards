@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
+import { Card } from 'antd';
 import type { VocabItem } from '../data/vocab';
-import './Flashcard.css';
+import styles from './Flashcard.module.css';
+import classnames from 'classnames';
 
 interface FlashcardProps {
   item: VocabItem;
@@ -24,27 +26,27 @@ const Flashcard: React.FC<FlashcardProps> = ({ item, isFlipped: propIsFlipped, o
   };
 
   return (
-    <div className={`flashcard-container ${isFlipped ? 'flipped' : ''}`} onClick={handleFlip}>
-      <div className="flashcard-inner">
-        <div className="flashcard-front">
-          <div className="card-content">
-            <h2 className="chinese-text">{item.chinese}</h2>
-            <p className="hint-text">Tap to reveal</p>
+    <div className={classnames(styles.flashcardContainer, { [styles.flipped]: isFlipped })} onClick={handleFlip}>
+      <div className={styles.flashcardInner}>
+        <Card className={styles.flashcardFront} variant="outlined" hoverable={false}>
+          <div className={styles.cardContent}>
+            <h2 className={styles.chineseText}>{item.chinese}</h2>
+            <p className={styles.hintText}>Tap to reveal</p>
           </div>
-        </div>
-        <div className="flashcard-back">
-          <div className="card-content">
-            <h2 className="chinese-text-small">{item.chinese}</h2>
-            <p className="pinyin-text">{item.pinyin}</p>
-            <h3 className="english-meaning">{item.english_meaning}</h3>
+        </Card>
+        <Card className={styles.flashcardBack} variant="outlined" hoverable={false}>
+          <div className={styles.cardContent}>
+            <h2 className={styles.chineseTextSmall}>{item.chinese}</h2>
+            <p className={styles.pinyinText}>{item.pinyin}</p>
+            <h3 className={styles.englishMeaning}>{item.english_meaning}</h3>
 
-            <div className="example-section">
-              <p className="example-cn">{item.example}</p>
-              <p className="example-pinyin">{item.example_pinyin}</p>
-              <p className="example-en">{item.example_meaning}</p>
+            <div className={styles.exampleSection}>
+              <p className={styles.exampleCn}>{item.example}</p>
+              <p className={styles.examplePinyin}>{item.example_pinyin}</p>
+              <p className={styles.exampleEnglish}>{item.example_meaning}</p>
             </div>
           </div>
-        </div>
+        </Card>
       </div>
     </div>
   );

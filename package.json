@@ -12,6 +12,7 @@
   "dependencies": {
     "@ant-design/icons": "6.x",
     "antd": "^6.2.3",
+    "classnames": "^2.5.1",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
     "react-router-dom": "^7.13.0"
