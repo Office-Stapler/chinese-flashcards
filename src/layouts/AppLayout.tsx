@@ -1,5 +1,5 @@
 import { Layout, Menu, theme } from 'antd';
-import { Content, Footer, Header } from 'antd/es/layout/layout';
+import { Content, Header } from 'antd/es/layout/layout';
 import { Link, Outlet, useLocation } from 'react-router-dom';
 
 const AppLayout = () => {
