@@ -1,17 +1,19 @@
+import { HashRouter, Route, Routes } from 'react-router-dom';
+import AppLayout from './layouts/AppLayout';
+import Home from './pages/Home';
+import StudyPage from './pages/StudyPage';
 import './App.css';
-import CardList from './components/CardList';
-import { vocabList } from './data/everyDay';
 
 function App() {
   return (
-    <div className="app-container">
-      <header className="app-header">
-        <h1>Chinese Flashcards</h1>
-        <p className="subtitle">Master Mandarin one card at a time</p>
-      </header>
-
-      <CardList data={vocabList} id="default" />
-    </div>
+    <HashRouter>
+      <Routes>
+        <Route path="/" element={<AppLayout />}>
+          <Route index element={<Home />} />
+          <Route path="category/:categoryId" element={<StudyPage />} />
+        </Route>
+      </Routes>
+    </HashRouter>
   );
 }
 

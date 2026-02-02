@@ -4,12 +4,13 @@
   --color-bg: #f8f9fa;
   --color-text-main: #2d3748;
   --color-text-sub: #718096;
-  --color-accent: #5e60ce; /* Modern purple/indigo */
+  --color-accent: #5e60ce;
+  /* Modern purple/indigo */
   --color-accent-hover: #4ea8de;
   --color-card-bg: #ffffff;
   --color-card-shadow: rgba(0, 0, 0, 0.08);
   --color-card-border: #e2e8f0;
-  
+
   --font-main: 'Outfit', 'Inter', sans-serif;
   --font-chinese: 'Noto Sans SC', sans-serif;
 
@@ -20,6 +21,7 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
 }
 
 * {
@@ -34,15 +36,10 @@ body {
   font-family: var(--font-main);
   background-color: var(--color-bg);
   color: var(--color-text-main);
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 #root {
   width: 100%;
-  max-width: 1200px;
-  padding: 2rem;
   text-align: center;
 }
 
