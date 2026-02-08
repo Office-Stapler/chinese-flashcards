@@ -20,7 +20,7 @@ const Flashcard: React.FC<FlashcardProps> = ({ item, isFlipped: propIsFlipped, o
     setIsFlipped((isFlipped) => !isFlipped);
   };
 
-  const currIsFlipped = propIsFlipped !== undefined ? propIsFlipped : isFlipped
+  const currIsFlipped = propIsFlipped ?? isFlipped
   return (
     <div className={classnames(styles.flashcardContainer, { [styles.flipped]: currIsFlipped })} onClick={handleFlip}>
       <div className={styles.flashcardInner}>
