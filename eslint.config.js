@@ -14,10 +14,22 @@ export default defineConfig([
       tseslint.configs.recommended,
       reactHooks.configs.flat.recommended,
       reactRefresh.configs.vite,
+      "prettier"
     ],
     languageOptions: {
       ecmaVersion: 2020,
       globals: globals.browser,
     },
+    rules: {
+      "max-len": ["error", {
+        "code": 100,
+        "tabWidth": 2,
+        "comments": 120,
+        "ignoreUrls": true,
+        "ignoreStrings": true,
+        "ignoreTemplateLiterals": true,
+        "ignoreRegExpLiterals": true
+      }]
+    }
   },
 ])

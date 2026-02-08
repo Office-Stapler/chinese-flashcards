@@ -1,11 +1,18 @@
-import { useEffect, useState } from 'react';
-import Flashcard from './Flashcard';
-import type { VocabItem } from '../data/vocab';
-import { useLocalStorage } from '../hooks/useLocalStorage';
-import styles from './CardList.module.css';
-import classNames from 'classnames';
-import { Button } from 'antd';
-import { ArrowLeftOutlined, ArrowRightOutlined } from '@ant-design/icons';
+import { useEffect, useState } from "react";
+import Flashcard from "./Flashcard";
+import type { VocabItem } from "../data/vocab";
+import { useLocalStorage } from "../hooks/useLocalStorage";
+import styles from "./CardList.module.css";
+import { Button, Col, Flex, Row, Statistic, Typography } from "antd";
+import {
+  ArrowLeftOutlined,
+  ArrowRightOutlined,
+  CheckCircleFilled,
+  CheckCircleOutlined,
+  CheckOutlined,
+} from "@ant-design/icons";
+
+const { Text } = Typography;
 
 interface CardListProps {
   data: VocabItem[];
@@ -68,63 +75,45 @@ const CardList = ({ data, id }: CardListProps) => {
 
   return (
     <div className={styles.cardListContainer}>
-      <div className={styles.listHeader}>
-        <div className={styles.scoreBadge}>
-          Known: {knownWords.size} / {data.length}
-        </div>
-      </div>
+      <Flex justify="flex-end">
+        <Statistic prefix={<CheckOutlined />} title="Known Words" value={knownWords.size} suffix={`/ ${data.length}`} />
+      </Flex>
 
       <main className={styles.cardSection}>
         <Flashcard item={currentCard} isFlipped={isFlipped} onClick={handleFlip} />
 
-        <button
-          className={classNames({
-            [styles.markBtn]: true,
-            [styles.known]: isKnown
-          })}
+        <Button
+          variant={isKnown ? "solid" : undefined}
+          color={isKnown ? "primary" : undefined}
           onClick={toggleKnown}
           aria-label={isKnown ? "Mark as unknown" : "Mark as known"}
         >
-          {isKnown ? (
-            <>
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-                <polyline points="22 4 12 14.01 9 11.01"></polyline>
-              </svg>
-              Mastered
-            </>
-          ) : (
-            <>
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <circle cx="12" cy="12" r="10"></circle>
-              </svg>
-              Mark as Known
-            </>
-          )}
-        </button>
+          <Row gutter={5}>
+            <Col>{isKnown ? <CheckCircleFilled /> : <CheckCircleOutlined />}</Col>
+            <Col>{isKnown ? "Mastered" : "Mark as Known"}</Col>
+          </Row>
+        </Button>
       </main>
 
-      <div className={styles.controls}>
-        <Button
-          onClick={prevCard}
-          aria-label="Previous card"
-          icon={<ArrowLeftOutlined />}
-        >
-          Prev
-        </Button>
+      <Row align="middle" justify="center" gutter={10}>
+        <Col>
+          <Button onClick={prevCard} aria-label="Previous card" icon={<ArrowLeftOutlined />}>
+            Prev
+          </Button>
+        </Col>
 
-        <span className={styles.counter}>
-          {currentIndex + 1} / {data.length}
-        </span>
+        <Col>
+          <Text>
+            {currentIndex + 1} / {data.length}
+          </Text>
+        </Col>
 
-        <Button
-          onClick={nextCard}
-          aria-label="Next card"
-          icon={<ArrowRightOutlined />}
-        >
-          Next
-        </Button>
-      </div>
+        <Col>
+          <Button onClick={nextCard} aria-label="Next card" icon={<ArrowRightOutlined />}>
+            Next
+          </Button>
+        </Col>
+      </Row>
     </div>
   );
 };

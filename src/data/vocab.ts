@@ -6,4 +6,3 @@ export interface VocabItem {
   example_pinyin: string;
   example_meaning: string;
 }
-

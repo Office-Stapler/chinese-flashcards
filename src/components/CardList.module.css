@@ -2,24 +2,6 @@
   width: 100%;
 }
 
-.listHeader {
-  display: flex;
-  justify-content: flex-end;
-  margin-bottom: 1rem;
-}
-
-.scoreBadge {
-  display: inline-block;
-  padding: 0.5rem 1rem;
-  background: white;
-  border-radius: 20px;
-  font-size: 0.9rem;
-  font-weight: 600;
-  color: var(--color-accent);
-  box-shadow: 0 2px 4px var(--color-card-shadow);
-  border: 1px solid var(--color-card-border);
-}
-
 .cardSection {
   width: 100%;
   margin-bottom: 2rem;
@@ -27,55 +9,6 @@
   flex-direction: column;
   align-items: center;
   gap: 2rem;
-}
-
-.markBtn {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.8rem 2rem;
-  border-radius: 12px;
-  font-weight: 600;
-  font-size: 1rem;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  background-color: white;
-  color: var(--color-text-sub);
-  border: 2px solid var(--color-card-border);
-  cursor: pointer;
-}
-
-.markBtn:hover {
-  background-color: #f8fafc;
-  transform: translateY(-2px);
-  border-color: var(--color-text-sub);
-}
-
-.known {
-  background-color: #48bb78 !important;
-  color: white !important;
-  border-color: #48bb78 !important;
-  box-shadow: 0 4px 12px rgba(72, 187, 120, 0.3);
-}
-
-.known:hover {
-  background-color: #38a169 !important;
-  border-color: #38a169 !important;
-}
-
-.controls {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 2rem;
-  margin-top: 1rem;
-}
-
-.counter {
-  font-family: var(--font-main);
-  font-weight: 600;
-  color: var(--color-text-sub);
-  font-size: 1.1rem;
-  letter-spacing: 2px;
 }
 
 .emptyState {

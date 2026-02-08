@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
-import { Card } from 'antd';
-import type { VocabItem } from '../data/vocab';
-import styles from './Flashcard.module.css';
-import classnames from 'classnames';
+import React, { useState } from "react";
+import { Card } from "antd";
+import type { VocabItem } from "../data/vocab";
+import styles from "./Flashcard.module.css";
+import classnames from "classnames";
 
 interface FlashcardProps {
   item: VocabItem;
@@ -20,7 +20,7 @@ const Flashcard: React.FC<FlashcardProps> = ({ item, isFlipped: propIsFlipped, o
     setIsFlipped((isFlipped) => !isFlipped);
   };
 
-  const currIsFlipped = propIsFlipped ?? isFlipped
+  const currIsFlipped = propIsFlipped ?? isFlipped;
   return (
     <div className={classnames(styles.flashcardContainer, { [styles.flipped]: currIsFlipped })} onClick={handleFlip}>
       <div className={styles.flashcardInner}>
@@ -30,10 +30,14 @@ const Flashcard: React.FC<FlashcardProps> = ({ item, isFlipped: propIsFlipped, o
             <p className={styles.hintText}>Tap to reveal</p>
           </div>
         </Card>
-        <Card className={classnames({
-          [styles.flashcard]: true,
-          [styles.flippedBack]: true,
-        })} variant="outlined" hoverable={false}>
+        <Card
+          className={classnames({
+            [styles.flashcard]: true,
+            [styles.flippedBack]: true,
+          })}
+          variant="outlined"
+          hoverable={false}
+        >
           <div className={styles.cardContent}>
             <h2 className={styles.chineseTextSmall}>{item.chinese}</h2>
             <p className={styles.pinyinText}>{item.pinyin}</p>

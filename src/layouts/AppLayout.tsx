@@ -1,6 +1,6 @@
-import { Layout, Menu, theme } from 'antd';
-import { Content, Header } from 'antd/es/layout/layout';
-import { Link, Outlet, useLocation } from 'react-router-dom';
+import { Layout, Menu, theme } from "antd";
+import { Content, Header } from "antd/es/layout/layout";
+import { Link, Outlet, useLocation } from "react-router-dom";
 
 const AppLayout = () => {
   const {
@@ -9,19 +9,22 @@ const AppLayout = () => {
   const location = useLocation();
 
   // Determine selected key based on path
-  const selectedKey = location.pathname === '/' ? 'home' : 'other';
+  const selectedKey = location.pathname === "/" ? "home" : "other";
 
   const items = [
     {
-      key: 'home',
+      key: "home",
       label: <Link to="/">Home</Link>,
     },
   ];
 
   return (
-    <Layout style={{ minHeight: '100vh' }}>
-      <Header style={{ display: 'flex', alignItems: 'center' }}>
-        <div className="demo-logo" style={{ color: 'white', fontWeight: 'bold', fontSize: '1.2rem', marginRight: '2rem' }}>
+    <Layout style={{ minHeight: "100vh" }}>
+      <Header style={{ display: "flex", alignItems: "center" }}>
+        <div
+          className="demo-logo"
+          style={{ color: "white", fontWeight: "bold", fontSize: "1.2rem", marginRight: "2rem" }}
+        >
           Chinese Flashcards
         </div>
         <Menu
@@ -32,7 +35,7 @@ const AppLayout = () => {
           style={{ flex: 1, minWidth: 0 }}
         />
       </Header>
-      <Content style={{ marginTop: '24px' }}>
+      <Content style={{ marginTop: "24px" }}>
         <div
           style={{
             background: colorBgContainer,

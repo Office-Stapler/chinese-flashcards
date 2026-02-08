@@ -1,9 +1,9 @@
-import { HashRouter, Route, Routes } from 'react-router-dom';
-import AppLayout from './layouts/AppLayout';
-import Home from './pages/Home';
-import StudyPage from './pages/StudyPage';
-import TestPage from './pages/TestPage';
-import './App.css';
+import { HashRouter, Route, Routes } from "react-router-dom";
+import AppLayout from "./layouts/AppLayout";
+import Home from "./pages/Home";
+import StudyPage from "./pages/StudyPage";
+import TestPage from "./pages/TestPage";
+import "./App.css";
 
 function App() {
   return (

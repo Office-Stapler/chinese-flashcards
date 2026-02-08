@@ -1,4 +1,4 @@
-import type { VocabItem } from '../data/vocab';
+import type { VocabItem } from "../data/vocab";
 
 export type Box = 0 | 1 | 2 | 3 | 4;
 
@@ -9,7 +9,7 @@ export interface WordProgress {
 
 export type ProgressMap = Record<string, WordProgress>;
 
-const STORAGE_KEY = 'chinese_flashcards_progress';
+const STORAGE_KEY = "chinese_flashcards_progress";
 
 // Intervals in days for each box: 0 (just learned) -> 1 day -> 3 days -> 7 days -> 14 days -> 30 days
 const INTERVALS: Record<Box, number> = {
@@ -53,7 +53,7 @@ export const ProgressService = {
 
     const now = Date.now();
     const intervalDays = isCorrect ? INTERVALS[newBox] : 0;
-    const nextReview = now + (intervalDays * 24 * 60 * 60 * 1000);
+    const nextReview = now + intervalDays * 24 * 60 * 60 * 1000;
 
     const newProgress = {
       ...progress,
@@ -72,7 +72,7 @@ export const ProgressService = {
     const now = Date.now();
 
     // Filter words that are due or new (never seen)
-    const dueWords = allWords.filter(word => {
+    const dueWords = allWords.filter((word) => {
       const wordProgress = progress[word.chinese]; // Using chinese char as ID
       // If never seen (undefined), it is "due" (available to learn)
       // If seen, check if nextReview <= now
@@ -87,5 +87,5 @@ export const ProgressService = {
       return shuffled.slice(0, limit);
     }
     return shuffled;
-  }
+  },
 };
