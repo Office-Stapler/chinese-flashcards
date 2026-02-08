@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react';
 import Flashcard from './Flashcard';
 import type { VocabItem } from '../data/vocab';
 import { useLocalStorage } from '../hooks/useLocalStorage';
+import styles from './CardList.module.css';
+import classNames from 'classnames';
 
 interface CardListProps {
   data: VocabItem[];
@@ -53,7 +55,7 @@ const CardList = ({ data, id }: CardListProps) => {
   };
 
   if (!data || data.length === 0) {
-    return <div className="empty-state">No vocabulary available.</div>;
+    return <div className={styles.emptyState}>No vocabulary available.</div>;
   }
 
   const currentCard = data[currentIndex];
@@ -63,18 +65,21 @@ const CardList = ({ data, id }: CardListProps) => {
   const isKnown = knownWords.has(currentIndex);
 
   return (
-    <div className="card-list-container">
-      <div className="list-header">
-        <div className="score-badge">
+    <div className={styles.cardListContainer}>
+      <div className={styles.listHeader}>
+        <div className={styles.scoreBadge}>
           Known: {knownWords.size} / {data.length}
         </div>
       </div>
 
-      <main className="card-section">
+      <main className={styles.cardSection}>
         <Flashcard item={currentCard} isFlipped={isFlipped} onClick={handleFlip} />
 
         <button
-          className={`mark-btn ${isKnown ? 'known' : ''}`}
+          className={classNames({
+            [styles.markBtn]: true,
+            [styles.known]: isKnown
+          })}
           onClick={toggleKnown}
           aria-label={isKnown ? "Mark as unknown" : "Mark as known"}
         >
@@ -97,19 +102,19 @@ const CardList = ({ data, id }: CardListProps) => {
         </button>
       </main>
 
-      <div className="controls">
-        <button className="control-btn" onClick={prevCard} aria-label="Previous card">
+      <div className={styles.controls}>
+        <button className={styles.controlBtn} onClick={prevCard} aria-label="Previous card">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M15 18L9 12L15 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
           </svg>
           Prev
         </button>
 
-        <span className="counter">
+        <span className={styles.counter}>
           {currentIndex + 1} / {data.length}
         </span>
 
-        <button className="control-btn" onClick={nextCard} aria-label="Next card">
+        <button className={styles.controlBtn} onClick={nextCard} aria-label="Next card">
           Next
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M9 18L15 12L9 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
