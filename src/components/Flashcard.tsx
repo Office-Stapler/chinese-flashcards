@@ -17,11 +17,12 @@ const Flashcard: React.FC<FlashcardProps> = ({ item, isFlipped: propIsFlipped, o
     if (onClick) {
       return onClick?.();
     }
-    setIsFlipped(!isFlipped);
+    setIsFlipped((isFlipped) => !isFlipped);
   };
 
+  const currIsFlipped = propIsFlipped !== undefined ? propIsFlipped : isFlipped
   return (
-    <div className={classnames(styles.flashcardContainer, { [styles.flipped]: isFlipped })} onClick={handleFlip}>
+    <div className={classnames(styles.flashcardContainer, { [styles.flipped]: currIsFlipped })} onClick={handleFlip}>
       <div className={styles.flashcardInner}>
         <Card className={styles.flashcard} variant="outlined" hoverable={false}>
           <div className={styles.cardContent}>

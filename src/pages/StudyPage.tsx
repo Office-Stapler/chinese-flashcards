@@ -3,6 +3,7 @@ import { Button, Result, Typography } from 'antd';
 import { ArrowLeftOutlined } from '@ant-design/icons';
 import CardList from '../components/CardList';
 import { vocabList as everyDayList } from '../data/everyDay';
+import { vocabList as faceList } from '../data/face';
 import type { VocabItem } from '../data/vocab';
 
 const { Title } = Typography;
@@ -10,6 +11,7 @@ const { Title } = Typography;
 // Map category IDs to data sources
 const dataMap: Record<string, VocabItem[]> = {
   everyDay: everyDayList,
+  face: faceList,
 };
 
 const StudyPage = () => {

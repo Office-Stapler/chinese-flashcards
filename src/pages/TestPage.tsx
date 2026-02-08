@@ -3,6 +3,7 @@ import { useParams, Link } from 'react-router-dom';
 import { Button, Card, Col, Row, Typography, Slider, Result, Progress, Tag } from 'antd';
 import { CheckCircleOutlined, CloseCircleOutlined, ReloadOutlined, HomeOutlined } from '@ant-design/icons';
 import { vocabList as everyDayList } from '../data/everyDay';
+import { vocabList as faceList } from '../data/face';
 import type { VocabItem } from '../data/vocab';
 import { ProgressService, type Box } from '../utils/progress';
 
@@ -10,6 +11,7 @@ const { Title, Text, Paragraph } = Typography;
 
 const dataMap: Record<string, VocabItem[]> = {
   everyDay: everyDayList,
+  face: faceList,
 };
 
 type TestState = 'setup' | 'testing' | 'summary';

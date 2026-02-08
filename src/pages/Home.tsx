@@ -1,6 +1,7 @@
 import { Button, Card, Col, Row, Typography } from 'antd';
 import { useNavigate } from 'react-router-dom';
 import { vocabList as everyDayList } from '../data/everyDay';
+import { vocabList as faceList } from '../data/face';
 
 const { Title, Paragraph } = Typography;
 
@@ -17,6 +18,12 @@ const categories: Category[] = [
     title: 'Everyday Words',
     description: 'Common vocabulary used in daily life.',
     count: everyDayList.length,
+  },
+  {
+    id: 'face',
+    title: 'Face',
+    description: 'Vocabulary related to the face.',
+    count: faceList.length,
   },
   // Future categories can be added here
 ] as const;
