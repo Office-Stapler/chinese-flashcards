@@ -79,7 +79,8 @@ export const vocabList: VocabItem[] = [
     english_meaning: "mole",
     example: "她嘴角有一颗痣，让她看起来很有辨识度。",
     example_pinyin: "Tā zuǐjiǎo yǒu yī kē zhì, ràng tā kàn qǐlái hěn yǒu biànshídù.",
-    example_meaning: "She has a mole at the corner of her mouth, which makes her very recognizable.",
+    example_meaning:
+      "She has a mole at the corner of her mouth, which makes her very recognizable.",
   },
   {
     chinese: "唇",
@@ -95,7 +96,8 @@ export const vocabList: VocabItem[] = [
     english_meaning: "jaw (chin)",
     example: "他在思考问题的时候，习惯用手摸下巴。",
     example_pinyin: "Tā zài sīkǎo wèntí de shíhou, xíguàn yòng shǒu mō xiàba.",
-    example_meaning: "When he is thinking about a problem, he is used to touching his chin with his hand.",
+    example_meaning:
+      "When he is thinking about a problem, he is used to touching his chin with his hand.",
   },
   {
     chinese: "前额",
@@ -111,7 +113,8 @@ export const vocabList: VocabItem[] = [
     english_meaning: "temple (head)",
     example: "头痛的时候，轻轻按摩太阳穴会舒服一点。",
     example_pinyin: "Tóutòng de shíhou, qīngqīng ànmó tàiyángxué huì shūfu yīdiǎn.",
-    example_meaning: "When you have a headache, massaging your temples gently will feel a bit better.",
+    example_meaning:
+      "When you have a headache, massaging your temples gently will feel a bit better.",
   },
   {
     chinese: "脸颊",

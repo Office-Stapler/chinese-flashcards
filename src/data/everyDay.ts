@@ -183,7 +183,8 @@ export const vocabList: VocabItem[] = [
     english_meaning: "Honey",
     example: "早起喝一杯蜂蜜水对身体有好处。",
     example_pinyin: "zǎo qǐ hē yì bēi fēng mì shuǐ duì shēn tǐ yǒu hǎo chu.",
-    example_meaning: "Drinking a glass of honey water early in the morning is good for your health.",
+    example_meaning:
+      "Drinking a glass of honey water early in the morning is good for your health.",
   },
   {
     chinese: "覆盆子",

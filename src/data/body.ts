@@ -15,7 +15,8 @@ export const vocabList: VocabItem[] = [
     english_meaning: "neck",
     example: "长时间低头看手机对颈椎不好。",
     example_pinyin: "Cháng shíjiān dītóu kàn shǒujī duì jǐngzhuī bù hǎo.",
-    example_meaning: "Looking at your phone with your head down for a long time is bad for your cervical spine.",
+    example_meaning:
+      "Looking at your phone with your head down for a long time is bad for your cervical spine.",
   },
   {
     chinese: "腹",

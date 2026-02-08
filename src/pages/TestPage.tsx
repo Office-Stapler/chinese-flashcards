@@ -1,7 +1,12 @@
 import { useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { Button, Card, Col, Row, Typography, Slider, Result, Progress, Tag } from "antd";
-import { CheckCircleOutlined, CloseCircleOutlined, ReloadOutlined, HomeOutlined } from "@ant-design/icons";
+import {
+  CheckCircleOutlined,
+  CloseCircleOutlined,
+  ReloadOutlined,
+  HomeOutlined,
+} from "@ant-design/icons";
 import { vocabList as everyDayList } from "../data/everyDay";
 import { vocabList as faceList } from "../data/face";
 import type { VocabItem } from "../data/vocab";
@@ -25,7 +30,9 @@ const TestPage = () => {
   const [testQueue, setTestQueue] = useState<VocabItem[]>([]);
   const [currentIndex, setCurrentIndex] = useState<number>(0);
   const [isRevealed, setIsRevealed] = useState<boolean>(false);
-  const [results, setResults] = useState<{ word: VocabItem; correct: boolean; oldBox: Box; newBox: Box }[]>([]);
+  const [results, setResults] = useState<
+    { word: VocabItem; correct: boolean; oldBox: Box; newBox: Box }[]
+  >([]);
 
   // For progress bar
   const progressPercent = testQueue.length > 0 ? (currentIndex / testQueue.length) * 100 : 0;
@@ -41,10 +48,17 @@ const TestPage = () => {
 
   const handleAnswer = (correct: boolean) => {
     const currentWord = testQueue[currentIndex];
-    const currentProgress = ProgressService.getWordProgress(ProgressService.loadProgress(), currentWord.chinese);
+    const currentProgress = ProgressService.getWordProgress(
+      ProgressService.loadProgress(),
+      currentWord.chinese,
+    );
 
     // Update progress
-    const updatedMap = ProgressService.updateProgress(ProgressService.loadProgress(), currentWord.chinese, correct);
+    const updatedMap = ProgressService.updateProgress(
+      ProgressService.loadProgress(),
+      currentWord.chinese,
+      correct,
+    );
     const newProgress = ProgressService.getWordProgress(updatedMap, currentWord.chinese);
 
     setResults([
@@ -92,7 +106,8 @@ const TestPage = () => {
       <div style={{ maxWidth: 600, margin: "0 auto", textAlign: "center", padding: "2rem 0" }}>
         <Title level={2}>Test Setup</Title>
         <Paragraph>
-          Select how many words you want to practice. The system will prioritize words you need to review.
+          Select how many words you want to practice. The system will prioritize words you need to
+          review.
         </Paragraph>
         <div style={{ margin: "3rem 0" }}>
           <Text>Number of Words: {testCount}</Text>
@@ -141,8 +156,17 @@ const TestPage = () => {
               <Title level={3} style={{ color: "#1890ff", margin: 0 }}>
                 {currentWord.pinyin}
               </Title>
-              <Paragraph style={{ fontSize: "1.2rem", marginTop: "1rem" }}>{currentWord.english_meaning}</Paragraph>
-              <div style={{ marginTop: "2rem", display: "flex", gap: "1rem", justifyContent: "center" }}>
+              <Paragraph style={{ fontSize: "1.2rem", marginTop: "1rem" }}>
+                {currentWord.english_meaning}
+              </Paragraph>
+              <div
+                style={{
+                  marginTop: "2rem",
+                  display: "flex",
+                  gap: "1rem",
+                  justifyContent: "center",
+                }}
+              >
                 <Button
                   danger
                   size="large"
@@ -202,7 +226,13 @@ const TestPage = () => {
             <Card
               size="small"
               title={res.word.chinese}
-              extra={res.correct ? <Tag color="success">Correct</Tag> : <Tag color="error">Incorrect</Tag>}
+              extra={
+                res.correct ? (
+                  <Tag color="success">Correct</Tag>
+                ) : (
+                  <Tag color="error">Incorrect</Tag>
+                )
+              }
             >
               <p>{res.word.pinyin}</p>
               <p>{res.word.english_meaning}</p>

@@ -22,7 +22,10 @@ const Flashcard: React.FC<FlashcardProps> = ({ item, isFlipped: propIsFlipped, o
 
   const currIsFlipped = propIsFlipped ?? isFlipped;
   return (
-    <div className={classnames(styles.flashcardContainer, { [styles.flipped]: currIsFlipped })} onClick={handleFlip}>
+    <div
+      className={classnames(styles.flashcardContainer, { [styles.flipped]: currIsFlipped })}
+      onClick={handleFlip}
+    >
       <div className={styles.flashcardInner}>
         <Card className={styles.flashcard} variant="outlined" hoverable={false}>
           <div className={styles.cardContent}>

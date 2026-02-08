@@ -20,10 +20,16 @@ interface CardListProps {
 }
 
 const CardList = ({ data, id }: CardListProps) => {
-  const { setValue: setLocalCurrIndex, value: localCurrIndex } = useLocalStorage<number>(`current-index-${id}`, 0);
+  const { setValue: setLocalCurrIndex, value: localCurrIndex } = useLocalStorage<number>(
+    `current-index-${id}`,
+    0,
+  );
   const [currentIndex, setCurrentIndex] = useState(localCurrIndex);
 
-  const { setValue: setLocalKnownWords, value: localKnownWords } = useLocalStorage<number[]>(`known-words-${id}`, []);
+  const { setValue: setLocalKnownWords, value: localKnownWords } = useLocalStorage<number[]>(
+    `known-words-${id}`,
+    [],
+  );
   const [knownWords, setKnownWords] = useState<Set<number>>(new Set(localKnownWords));
 
   const [isFlipped, setIsFlipped] = useState(false);
@@ -76,7 +82,12 @@ const CardList = ({ data, id }: CardListProps) => {
   return (
     <div className={styles.cardListContainer}>
       <Flex justify="flex-end">
-        <Statistic prefix={<CheckOutlined />} title="Known Words" value={knownWords.size} suffix={`/ ${data.length}`} />
+        <Statistic
+          prefix={<CheckOutlined />}
+          title="Known Words"
+          value={knownWords.size}
+          suffix={`/ ${data.length}`}
+        />
       </Flex>
 
       <main className={styles.cardSection}>
