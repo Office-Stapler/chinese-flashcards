@@ -32,7 +32,7 @@ const AppLayout = () => {
           style={{ flex: 1, minWidth: 0 }}
         />
       </Header>
-      <Content style={{ padding: '0 48px', marginTop: '24px' }}>
+      <Content style={{ marginTop: '24px' }}>
         <div
           style={{
             background: colorBgContainer,
