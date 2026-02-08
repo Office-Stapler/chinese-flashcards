@@ -70,33 +70,6 @@
   margin-top: 1rem;
 }
 
-.controlBtn {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.8rem 1.5rem;
-  background-color: var(--color-card-bg);
-  color: var(--color-text-main);
-  border-radius: 50px;
-  font-weight: 600;
-  font-size: 1rem;
-  box-shadow: 0 4px 6px var(--color-card-shadow);
-  transition: all 0.2s ease;
-  border: 1px solid var(--color-card-border);
-  cursor: pointer;
-}
-
-.controlBtn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 15px var(--color-card-shadow);
-  color: var(--color-accent);
-  border-color: var(--color-accent);
-}
-
-.controlBtn:active {
-  transform: translateY(0);
-}
-
 .counter {
   font-family: var(--font-main);
   font-weight: 600;

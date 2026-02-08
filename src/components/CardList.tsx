@@ -4,6 +4,8 @@ import type { VocabItem } from '../data/vocab';
 import { useLocalStorage } from '../hooks/useLocalStorage';
 import styles from './CardList.module.css';
 import classNames from 'classnames';
+import { Button } from 'antd';
+import { ArrowLeftOutlined, ArrowRightOutlined } from '@ant-design/icons';
 
 interface CardListProps {
   data: VocabItem[];
@@ -103,23 +105,25 @@ const CardList = ({ data, id }: CardListProps) => {
       </main>
 
       <div className={styles.controls}>
-        <button className={styles.controlBtn} onClick={prevCard} aria-label="Previous card">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M15 18L9 12L15 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-          </svg>
+        <Button
+          onClick={prevCard}
+          aria-label="Previous card"
+          icon={<ArrowLeftOutlined />}
+        >
           Prev
-        </button>
+        </Button>
 
         <span className={styles.counter}>
           {currentIndex + 1} / {data.length}
         </span>
 
-        <button className={styles.controlBtn} onClick={nextCard} aria-label="Next card">
+        <Button
+          onClick={nextCard}
+          aria-label="Next card"
+          icon={<ArrowRightOutlined />}
+        >
           Next
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M9 18L15 12L9 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-          </svg>
-        </button>
+        </Button>
       </div>
     </div>
   );
