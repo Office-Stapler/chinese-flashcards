@@ -1,32 +1,8 @@
 import { Button, Card, Col, Row, Typography } from "antd";
 import { useNavigate } from "react-router-dom";
-import { vocabList as everyDayList } from "../data/everyDay";
-import { vocabList as faceList } from "../data/face";
+import { CATEGORIES } from "../data/category_maps";
 
 const { Title, Paragraph } = Typography;
-
-type Category = {
-  id: string;
-  title: string;
-  description: string;
-  count: number;
-};
-
-const categories: Category[] = [
-  {
-    id: "everyDay",
-    title: "Everyday Words",
-    description: "Common vocabulary used in daily life.",
-    count: everyDayList.length,
-  },
-  {
-    id: "face",
-    title: "Face",
-    description: "Vocabulary related to the face.",
-    count: faceList.length,
-  },
-  // Future categories can be added here
-] as const;
 
 const Home = () => {
   const navigate = useNavigate();
@@ -38,7 +14,7 @@ const Home = () => {
         <Paragraph>Choose a vocabulary set to start your practice session.</Paragraph>
       </div>
       <Row gutter={[16, 16]} justify="center">
-        {categories.map((category) => (
+        {CATEGORIES.map((category) => (
           <Col xs={24} sm={12} md={8} lg={6} key={category.id}>
             <Card
               hoverable={true}

@@ -7,23 +7,33 @@ import {
   ReloadOutlined,
   HomeOutlined,
 } from "@ant-design/icons";
-import { vocabList as everyDayList } from "../data/everyDay";
-import { vocabList as faceList } from "../data/face";
 import type { VocabItem } from "../data/vocab";
 import { ProgressService, type Box } from "../utils/progress";
+import { VOCAB_MAP as dataMap } from "../data/category_maps";
+import { stringToCategoryId } from "../utils/vocab";
 
 const { Title, Text, Paragraph } = Typography;
-
-const dataMap: Record<string, VocabItem[]> = {
-  everyDay: everyDayList,
-  face: faceList,
-};
 
 type TestState = "setup" | "testing" | "summary";
 
 const TestPage = () => {
   const { categoryId } = useParams<{ categoryId: string }>();
-  const allData = categoryId ? dataMap[categoryId] : [];
+  const currCategoryId = stringToCategoryId(categoryId);
+  if (!currCategoryId) {
+    return (
+      <Result
+        status="404"
+        title="Category Not Found"
+        subTitle="There is no data for this category."
+        extra={
+          <Button type="primary">
+            <Link to="/">Back Home</Link>
+          </Button>
+        }
+      />
+    );
+  }
+  const allData = dataMap[currCategoryId];
 
   const [state, setState] = useState<TestState>("setup");
   const [testCount, setTestCount] = useState<number>(10);

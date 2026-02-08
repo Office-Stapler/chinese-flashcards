@@ -2,23 +2,16 @@ import { useParams, Link } from "react-router-dom";
 import { Button, Result, Typography } from "antd";
 import { ArrowLeftOutlined } from "@ant-design/icons";
 import CardList from "../components/CardList";
-import { vocabList as everyDayList } from "../data/everyDay";
-import { vocabList as faceList } from "../data/face";
-import type { VocabItem } from "../data/vocab";
+import { VOCAB_MAP as dataMap } from "../data/category_maps";
+import { stringToCategoryId } from "../utils/vocab";
 
 const { Title } = Typography;
 
-// Map category IDs to data sources
-const dataMap: Record<string, VocabItem[]> = {
-  everyDay: everyDayList,
-  face: faceList,
-};
-
 const StudyPage = () => {
   const { categoryId } = useParams<{ categoryId: string }>();
-  const data = categoryId ? dataMap[categoryId] : undefined;
+  const currCategoryId = stringToCategoryId(categoryId);
 
-  if (!data) {
+  if (!currCategoryId) {
     return (
       <Result
         status="404"
@@ -33,6 +26,7 @@ const StudyPage = () => {
     );
   }
 
+  const data = dataMap[currCategoryId];
   const title = categoryId === "everyDay" ? "Everyday Words" : "Vocabulary";
 
   return (
@@ -47,7 +41,7 @@ const StudyPage = () => {
           {title}
         </Title>
       </div>
-      <CardList data={data} id={categoryId || "default"} />
+      <CardList data={data} id={currCategoryId} />
     </div>
   );
 };
