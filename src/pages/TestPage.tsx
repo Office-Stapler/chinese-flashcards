@@ -150,7 +150,6 @@ const TestPage = () => {
             justifyContent: "center",
             textAlign: "center",
           }}
-          bodyStyle={{ width: "100%" }}
         >
           <Title level={1} style={{ fontSize: "4rem", marginBottom: "1rem" }}>
             {currentWord.chinese}
