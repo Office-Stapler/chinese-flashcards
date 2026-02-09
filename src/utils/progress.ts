@@ -1,5 +1,11 @@
 import type { VocabItem } from "../data/vocab";
 
+// Box is the Spaced Repetition System (SRS) level
+// 0: Just learned (reset)
+// 1: 1 day
+// 2: 3 days
+// 3: 7 days
+// 4: 14 days
 export type Box = 0 | 1 | 2 | 3 | 4;
 
 export interface WordProgress {
@@ -7,6 +13,7 @@ export interface WordProgress {
   nextReview: number; // timestamp
 }
 
+// Progress Map where the 
 export type ProgressMap = Record<string, WordProgress>;
 
 const STORAGE_KEY = "chinese_flashcards_progress";
@@ -20,29 +27,21 @@ const INTERVALS: Record<Box, number> = {
   4: 14,
 };
 
-export const ProgressService = {
-  loadProgress(): ProgressMap {
+export class ProgressProvider {
+  private progress: ProgressMap;
+
+  constructor() {
     const stored = localStorage.getItem(STORAGE_KEY);
-    return stored ? JSON.parse(stored) : {};
-  },
+    this.progress = stored ? JSON.parse(stored) : {};
+  }
 
-  saveProgress(progress: ProgressMap) {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(progress));
-  },
+  getWordProgress(wordId: string): WordProgress {
+    return this.progress[wordId] || { box: 0, nextReview: 0 };
+  }
 
-  getWordProgress(progress: ProgressMap, wordId: string): WordProgress {
-    return progress[wordId] || { box: 0, nextReview: 0 };
-  },
-
-  updateProgress(progress: ProgressMap, wordId: string, isCorrect: boolean): ProgressMap {
-    const current = this.getWordProgress(progress, wordId);
-    let newBox: Box = current.box;
-
-    if (isCorrect) {
-      newBox = Math.min(current.box + 1, 4) as Box;
-    } else {
-      newBox = 0;
-    }
+  updateProgress(wordId: string, isCorrect: boolean): ProgressMap {
+    const current = this.getWordProgress(wordId);
+    const nextBox = getNextBoxLevel(current.box, isCorrect);
 
     // Calculate next review time
     // If correct, add interval. If incorrect, reset to now? Or reset to tomorrow?
@@ -52,40 +51,46 @@ export const ProgressService = {
     // Incorrect -> Now (reset execution)
 
     const now = Date.now();
-    const intervalDays = isCorrect ? INTERVALS[newBox] : 0;
-    const nextReview = now + intervalDays * 24 * 60 * 60 * 1000;
+    const intervalDays = isCorrect ? INTERVALS[nextBox] : 0;
+    const intervalMs = intervalDays * 24 * 60 * 60 * 1000;
+
+    const nextReview = now + intervalMs;
 
     const newProgress = {
-      ...progress,
+      ...this.progress,
       [wordId]: {
-        box: newBox,
+        box: nextBox,
         nextReview,
       },
     };
 
     this.saveProgress(newProgress);
     return newProgress;
-  },
+  }
+
+  saveProgress(progress: ProgressMap) {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(progress));
+    this.progress = progress;
+  }
 
   getDueWords(allWords: VocabItem[], limit?: number): VocabItem[] {
-    const progress = this.loadProgress();
     const now = Date.now();
-
     // Filter words that are due or new (never seen)
-    const dueWords = allWords.filter((word) => {
-      const wordProgress = progress[word.chinese]; // Using chinese char as ID
-      // If never seen (undefined), it is "due" (available to learn)
-      // If seen, check if nextReview <= now
-      if (!wordProgress) return true;
-      return wordProgress.nextReview <= now;
-    });
+    const dueWords = allWords
+      .filter((word) => {
+        const wordProgress = this.progress[word.chinese];
+        return !wordProgress || wordProgress.nextReview <= now;
+      })
+      // shuffle the words
+      .sort(() => 0.5 - Math.random());
+    return dueWords.slice(0, limit);
+  }
 
-    // Shuffle
-    const shuffled = dueWords.sort(() => 0.5 - Math.random());
+}
 
-    if (limit) {
-      return shuffled.slice(0, limit);
-    }
-    return shuffled;
-  },
-};
+function getNextBoxLevel(currentBox: Box, isCorrect: boolean): Box {
+  if (isCorrect) {
+    return Math.min(currentBox + 1, 4) as Box;
+  }
+  return 0;
+}

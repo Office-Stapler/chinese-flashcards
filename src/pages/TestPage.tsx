@@ -8,7 +8,8 @@ import {
   HomeOutlined,
 } from "@ant-design/icons";
 import type { VocabItem } from "../data/vocab";
-import { ProgressService, type Box } from "../utils/progress";
+import type { Box } from "../utils/progress";
+import { ProgressProvider } from "../utils/progress";
 import { VOCAB_MAP as dataMap } from "../data/category_maps";
 import { stringToCategoryId } from "../utils/vocab";
 
@@ -17,6 +18,7 @@ const { Title, Text, Paragraph } = Typography;
 type TestState = "setup" | "testing" | "summary";
 
 const TestPage = () => {
+  const progressProvider = new ProgressProvider();
   const { categoryId } = useParams<{ categoryId: string }>();
   const currCategoryId = stringToCategoryId(categoryId);
   if (!currCategoryId) {
@@ -48,7 +50,7 @@ const TestPage = () => {
   const progressPercent = testQueue.length > 0 ? (currentIndex / testQueue.length) * 100 : 0;
 
   const handleStart = () => {
-    const queue = ProgressService.getDueWords(allData, testCount);
+    const queue = progressProvider.getDueWords(allData, testCount);
     setTestQueue(queue);
     setCurrentIndex(0);
     setResults([]);
@@ -58,18 +60,11 @@ const TestPage = () => {
 
   const handleAnswer = (correct: boolean) => {
     const currentWord = testQueue[currentIndex];
-    const currentProgress = ProgressService.getWordProgress(
-      ProgressService.loadProgress(),
-      currentWord.chinese,
-    );
+    const currentProgress = progressProvider.getWordProgress(currentWord.chinese);
 
     // Update progress
-    const updatedMap = ProgressService.updateProgress(
-      ProgressService.loadProgress(),
-      currentWord.chinese,
-      correct,
-    );
-    const newProgress = ProgressService.getWordProgress(updatedMap, currentWord.chinese);
+    progressProvider.updateProgress(currentWord.chinese, correct);
+    const newProgress = progressProvider.getWordProgress(currentWord.chinese);
 
     setResults([
       ...results,
