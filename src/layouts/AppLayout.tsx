@@ -1,12 +1,15 @@
 import { Layout, Menu, theme } from "antd";
 import { Content, Header } from "antd/es/layout/layout";
-import { Link, Outlet, useLocation } from "react-router-dom";
+import { Link, Outlet, useLocation, useNavigate } from "react-router-dom";
+import { useCallback } from "react";
+import styles from './header.module.css';
 
 const AppLayout = () => {
   const {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
   const location = useLocation();
+  const navigate = useNavigate();
 
   // Determine selected key based on path
   const selectedKey = location.pathname === "/" ? "home" : "other";
@@ -18,13 +21,12 @@ const AppLayout = () => {
     },
   ];
 
+  const onTitleClick = useCallback(() => navigate(`/`), [navigate])
+
   return (
     <Layout style={{ minHeight: "100vh" }}>
       <Header style={{ display: "flex", alignItems: "center" }}>
-        <div
-          className="demo-logo"
-          style={{ color: "white", fontWeight: "bold", fontSize: "1.2rem", marginRight: "2rem" }}
-        >
+        <div className={styles.title} onClick={onTitleClick}>
           Chinese Flashcards
         </div>
         <Menu
