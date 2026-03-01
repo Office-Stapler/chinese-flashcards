@@ -15,7 +15,7 @@ const Home = () => {
         <Title level={2}>Select a Category</Title>
         <Paragraph>Choose a vocabulary set to start your practice session.</Paragraph>
       </div>
-      <Row gutter={[16, 16]} justify="center">
+      <Row gutter={[16, 16]} justify="center" wrap={true}>
         {CATEGORIES.map((category) => (
           <Col xs={24} sm={12} md={8} lg={6} key={category.id}>
             <Card
