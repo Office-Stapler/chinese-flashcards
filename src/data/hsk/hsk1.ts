@@ -1,4 +1,5 @@
-import type { VocabItem } from "./vocab";
+import type { VocabItem } from "../vocab";
+
 export const vocabList: VocabItem[] = [
   {
     chinese: "\u5427",

@@ -1,10 +1,11 @@
 import { vocabList as everyDayList } from "./everyDay";
 import { vocabList as faceList } from "./face";
-import { vocabList as hskOneList } from "./hskOne";
-import { vocabList as hskTwoList } from "./hskTwo";
+import { vocabList as hskOneList } from "./hsk/hsk1";
+import { vocabList as hskTwoList } from "./hsk/hsk2";
+import { vocabList as hskThreeList } from "./hsk/hsk3";
 import type { VocabItem } from "./vocab";
 
-export const categoryIds = ["everyDay", "face", "hskOne", "hskTwo"] as const;
+export const categoryIds = ["everyDay", "face", "hskOne", "hskTwo", "hskThree"] as const;
 export type CategoryId = (typeof categoryIds)[number];
 
 export type Category = {
@@ -43,6 +44,13 @@ export const CATEGORIES: Category[] = [
     description: "HSK 2 words",
     count: hskTwoList.length,
     list: hskTwoList,
+  },
+  {
+    id: "hskThree",
+    title: "HSK 3",
+    description: "HSK 3 words",
+    count: hskThreeList.length,
+    list: hskThreeList,
   },
 ];
 
