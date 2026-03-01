@@ -49,7 +49,7 @@
 /* Front Side Styling */
 .chineseText {
   font-family: var(--font-chinese);
-  font-size: 5rem;
+  font-size: 3rem;
   font-weight: 700;
   color: var(--color-text-main);
   margin-bottom: 1rem;
@@ -79,7 +79,7 @@
 }
 
 .englishMeaning {
-  font-size: 1.5rem;
+  font-size: 1rem;
   font-weight: 600;
   color: var(--color-text-main);
   margin: 0.5rem 0 1.5rem 0;

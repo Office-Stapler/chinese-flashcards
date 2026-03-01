@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import Flashcard from "./Flashcard";
 import type { VocabItem } from "../data/vocab";
 import { useLocalStorage } from "../hooks/useLocalStorage";
@@ -56,6 +56,27 @@ const CardList = ({ data, id }: CardListProps) => {
       return newIndex;
     });
   };
+
+  const handleKeyPress = useCallback(
+    (e: KeyboardEvent) => {
+      if (e.key === "ArrowRight") {
+        nextCard();
+      } else if (e.key === "ArrowLeft") {
+        prevCard();
+      } else if (e.key === " ") {
+        handleFlip();
+      }
+    },
+    [nextCard, prevCard, handleFlip],
+  );
+
+  // Setup keyboard shortcuts for the card list.
+  useEffect(() => {
+    document.addEventListener("keydown", handleKeyPress);
+    return () => {
+      document.removeEventListener("keydown", handleKeyPress);
+    };
+  }, [handleKeyPress]);
 
   const toggleKnown = () => {
     setKnownWords((prev) => {
