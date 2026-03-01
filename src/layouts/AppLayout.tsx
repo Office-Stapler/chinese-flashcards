@@ -2,7 +2,7 @@ import { Layout, Menu, theme } from "antd";
 import { Content, Header } from "antd/es/layout/layout";
 import { Link, Outlet, useLocation, useNavigate } from "react-router-dom";
 import { useCallback } from "react";
-import styles from './header.module.css';
+import styles from "./header.module.css";
 
 const AppLayout = () => {
   const {
@@ -21,7 +21,7 @@ const AppLayout = () => {
     },
   ];
 
-  const onTitleClick = useCallback(() => navigate(`/`), [navigate])
+  const onTitleClick = useCallback(() => navigate(`/`), [navigate]);
 
   return (
     <Layout style={{ minHeight: "100vh" }}>

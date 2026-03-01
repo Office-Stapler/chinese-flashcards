@@ -2,7 +2,6 @@
 
 A frontend-only flashcard application designed to help master Mandarin Chinese vocabulary.
 
-
 ## Features
 
 - **Interactive Flashcards**: Tap or click to flip the card and reveal Pinyin, English meanings, and example sentences.
@@ -30,12 +29,14 @@ A frontend-only flashcard application designed to help master Mandarin Chinese v
 ### Installation
 
 1. Clone the repository:
+
    ```bash
    git clone https://github.com/Office-Stapler/chinese-flashcards.git
-   cd chinese-flashcards
+   cd
    ```
 
 2. Install dependencies:
+
    ```bash
    yarn install
    ```

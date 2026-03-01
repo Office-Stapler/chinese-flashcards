@@ -35,7 +35,7 @@ export const CATEGORIES: Category[] = [
     description: "HSK 1 words",
     count: hskOneList.length,
     list: hskOneList,
-  }
+  },
 ];
 
 export const VOCAB_MAP: Record<CategoryId, VocabItem[]> = Object.fromEntries(

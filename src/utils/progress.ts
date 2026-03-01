@@ -13,7 +13,7 @@ export interface WordProgress {
   nextReview: number; // timestamp
 }
 
-// Progress Map where the 
+// Progress Map where the
 export type ProgressMap = Record<string, WordProgress>;
 
 const STORAGE_KEY = "chinese_flashcards_progress";
@@ -85,7 +85,6 @@ export class ProgressProvider {
       .sort(() => 0.5 - Math.random());
     return dueWords.slice(0, limit);
   }
-
 }
 
 function getNextBoxLevel(currentBox: Box, isCorrect: boolean): Box {

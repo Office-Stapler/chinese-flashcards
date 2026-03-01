@@ -25,8 +25,8 @@ const Home = () => {
               className={styles.card}
               styles={{
                 body: {
-                  flexGrow: 1
-                }
+                  flexGrow: 1,
+                },
               }}
               onClick={() => navigate(`/category/${category.id}`)}
               actions={[
@@ -45,7 +45,6 @@ const Home = () => {
                 <p>{category.description}</p>
                 <p style={{ color: "#888", fontSize: "0.9em" }}>{category.count} words</p>
               </div>
-
             </Card>
           </Col>
         ))}
