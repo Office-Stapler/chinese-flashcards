@@ -46,11 +46,15 @@ const Flashcard: React.FC<FlashcardProps> = ({ item, isFlipped: propIsFlipped, o
             <p className={styles.pinyinText}>{item.pinyin}</p>
             <h3 className={styles.englishMeaning}>{item.english_meaning}</h3>
 
-            <div className={styles.exampleSection}>
-              <p className={styles.exampleCn}>{item.example}</p>
-              <p className={styles.examplePinyin}>{item.example_pinyin}</p>
-              <p className={styles.exampleEnglish}>{item.example_meaning}</p>
-            </div>
+            {
+              item.example ? (
+                <div className={styles.exampleSection}>
+                  <p className={styles.exampleCn}>{item.example}</p>
+                  <p className={styles.examplePinyin}>{item.example_pinyin}</p>
+                  <p className={styles.exampleEnglish}>{item.example_meaning}</p>
+                </div>
+              ) : null
+            }
           </div>
         </Card>
       </div>

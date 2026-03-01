@@ -1,8 +1,9 @@
 import { vocabList as everyDayList } from "./everyDay";
 import { vocabList as faceList } from "./face";
+import { vocabList as hskOneList } from "./hskOne";
 import type { VocabItem } from "./vocab";
 
-export const categoryIds = ["everyDay", "face"] as const;
+export const categoryIds = ["everyDay", "face", "hskOne"] as const;
 export type CategoryId = (typeof categoryIds)[number];
 
 export type Category = {
@@ -28,6 +29,13 @@ export const CATEGORIES: Category[] = [
     count: faceList.length,
     list: faceList,
   },
+  {
+    id: "hskOne",
+    title: "HSK 1",
+    description: "HSK 1 words",
+    count: hskOneList.length,
+    list: hskOneList,
+  }
 ];
 
 export const VOCAB_MAP: Record<CategoryId, VocabItem[]> = Object.fromEntries(
